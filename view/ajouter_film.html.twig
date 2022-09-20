@@ -1,0 +1,52 @@
+{% if status is not defined %}
+	<div class="container text-center w-80 shadow-lg p-3 mb-5 bg-body rounded mt-5">
+		<h2>
+			Ajouter un Film dans la Médiathèque
+		</h2>
+
+		<form action="ajouter_film" method="post">
+			<div class="row">
+				<div class="col-12">
+					<input type="text" name="idFilm" placeholder="ID du film" hidden>
+					<input type="text" name="titre" placeholder="Titre du film" required>
+					<input type="text" name="realisateur" placeholder="Réalisateur" required>
+					<input type="text" name="affiche" placeholder="Lien image">
+					<input type="text" name="annee" placeholder="Année de réalisation" required>
+					<input type="text" name="nbRole" id="nbRole" hidden>
+					<button id="btnAjout" type="submit" class="btn btn-primary mx-3 mb-1">Ajouter un film</button>
+					<hr>
+				</div>
+			</div>
+			<div class="container text-center w-80">
+				<div class="row">
+					<div class="col-12" id="containerRoles"></div>
+				</div>
+			</div>
+		</form>
+	</div>
+{% else %}
+	<div class="container">
+		<div class="row">
+			<div class="col-3 shadow-lg p-3 mb-5 bg-body rounded">
+				<label class="form-label text-success">Ajout du Film confirmé</label>
+			</div>
+		</div>
+	</div>
+
+	{% if film is defined %}
+		<p>{{film.getTitre}}</p>
+		<p>{{film.getRealisateur}}</p>
+		<p><img src="{{film.getAffiche}}" class="d-block w-100" style="height:auto;" alt="{{film.getAffiche}}"></p>
+		<p>{{film.getAnnee}}</p>
+	{% endif %}
+{% endif %}
+<div class="container text-center mt-5">
+
+	<button class="btn btn-outline-dark">
+		<a href="affichageFilms" class="text-reset text-decoration-none">Retour</a>
+	</button>
+	<button class="btn btn-outline-dark">
+		<a href="liste_film" class="text-reset text-decoration-none">Aller a suppression</a>
+	</button>
+</div>
+<script src="./view/web/js/app.js" defer></script>
